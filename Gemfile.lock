@@ -276,6 +276,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic-ui-sass (2.4.3.0)
+      sassc
     semantic_range (3.0.0)
     sexp_processor (4.15.2)
     shellany (0.0.1)
@@ -351,6 +353,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  semantic-ui-sass
   sidekiq
   spring
   turbolinks (~> 5)
