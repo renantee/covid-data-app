@@ -7,7 +7,7 @@ App versions:
 * Ruby version 2.7.0 https://www.ruby-lang.org/en/documentation/installation/
   ```
   rvm list
-  rvm gemset use 2.7.0@manual-ror-app --create
+  rvm gemset use 2.7.0@covid-data-app --create
   ```
 
 * Rails version 6.1.3 https://guides.rubyonrails.org/getting_started.html
