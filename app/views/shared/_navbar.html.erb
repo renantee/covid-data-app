@@ -1,7 +1,7 @@
 <div class="ui inverted menu">
-  <%= link_to "Home", root_path, class: "active item" %>
+  <%= link_to "Home", root_path, class: "#{is_active(root_path)} item" %>
   <% if !user_signed_in? %>
-    <%= link_to "Login", new_user_session_path, class: "item" %>
+    <%= link_to "Login", new_user_session_path, class: "#{is_active(new_user_session_path)} item" %>
   <% else %>
     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "item" %>
   <% end %>
