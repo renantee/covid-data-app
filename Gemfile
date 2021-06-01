@@ -22,6 +22,7 @@ gem 'sidekiq'
 gem 'redis', '~> 4.0'
 gem 'devise'
 gem 'semantic-ui-sass'
+gem 'seed-fu', '~> 2.3'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
