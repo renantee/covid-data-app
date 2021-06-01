@@ -16,17 +16,7 @@
     </div>
 
     <div class="ui container">
-      <% if notice.present? %>
-        <div class="ui message green">
-          <p><%= notice %></p>
-        </div>
-      <% end %>
-
-      <% if alert.present? %>
-        <div class="ui message red">
-          <p><%= alert %></p>
-        </div>
-      <% end %>
+      <%= render "shared/error_message" %>
 
       <%= yield %>
     </div>
