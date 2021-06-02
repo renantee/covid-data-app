@@ -1,0 +1,36 @@
+<h4 class="ui header">WHO Coronavirus (COVID-19) Dashboard</h4>
+
+<%= render "form" %>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>ISO3</th>
+      <th>Data Source</th>
+      <th>Date Updated</th>
+      <th>Total Vaccinations</th>
+      <th>Persons Vaccinated 1Plus Dose</th>
+      <th>Total Vaccinations Per 100</th>
+      <th>Vaccines Used</th>
+      <th>First Vaccine Date</th>
+      <th>Number of Vaccine Type Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vaccinations.each do |data| %>
+      <tr>
+        <td data-label="Country"></td>
+        <td data-label="ISO3"></td>
+        <td data-label="Data Source"></td>
+        <td data-label="Date Updated"><%= data.date_updated %></td>
+        <td data-label="Total Vaccinations"><%= data.total_vaccinations %></td>
+        <td data-label="Persons Vaccinated 1Plus Dose"><%= data.persons_vaccinated_1plus_dose %></td>
+        <td data-label="Total Vaccinations Per 100"><%= data.persons_vaccinated_1plus_dose_per100 %></td>
+        <td data-label="Vaccines Used"><%= data.vaccination_details.count %></td>
+        <td data-label="First Vaccine Date"><%= data.first_vaccine_date %></td>
+        <td data-label="Number of Vaccine Type Used"><%= data.vaccination_details.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

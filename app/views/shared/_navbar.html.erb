@@ -4,6 +4,7 @@
     <%= link_to "Login", new_user_session_path, class: "#{active?(new_user_session_path)} item" %>
     <%= link_to "Register", new_user_registration_path, class: "#{active?(new_user_registration_path)} item" %>
   <% else %>
+    <%= link_to "Dashboard", vaccinations_path, class: "#{active?(vaccinations_path)} item" %>
     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "item" %>
   <% end %>
 </div>

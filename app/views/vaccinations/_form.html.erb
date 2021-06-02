@@ -1,0 +1,14 @@
+<h5 class="ui header">
+  Upload CSV Data
+</h5>
+
+<%= form_tag import_vaccinations_path, multipart: true, class: 'ui form' do %>
+  <div class="field">
+    <%= file_field_tag :file %>
+  </div>
+
+  <div class="ui left icon input">
+    <%= submit_tag "Import CSV", class: "ui submit button primary " %>
+    <i class="upload icon"></i>
+  </div>
+<% end %>
