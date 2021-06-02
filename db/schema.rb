@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_044423) do
+ActiveRecord::Schema.define(version: 2021_06_02_045037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2021_06_02_044423) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vaccination_details", force: :cascade do |t|
+    t.bigint "vaccination_id", null: false
+    t.bigint "vaccine_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vaccination_id"], name: "index_vaccination_details_on_vaccination_id"
+    t.index ["vaccine_id"], name: "index_vaccination_details_on_vaccine_id"
+  end
+
   create_table "vaccinations", force: :cascade do |t|
     t.string "who_region"
     t.date "date_updated"
@@ -74,4 +83,6 @@ ActiveRecord::Schema.define(version: 2021_06_02_044423) do
   end
 
   add_foreign_key "users", "countries"
+  add_foreign_key "vaccination_details", "vaccinations"
+  add_foreign_key "vaccination_details", "vaccines"
 end
