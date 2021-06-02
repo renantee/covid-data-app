@@ -12,6 +12,8 @@ AllCops:
     - '**/Rakefile'
 
   Exclude:
+    - db/fixtures/seed_countries.rb
+    - db/fixtures/seed_vaccines.rb
     - db/migrate/**/*
     - db/schema.rb
     - config/**/*
