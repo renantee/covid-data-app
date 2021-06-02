@@ -5,6 +5,7 @@
 <table class="ui celled table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Country</th>
       <th>ISO3</th>
       <th>Data Source</th>
@@ -18,8 +19,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @vaccinations.each do |data| %>
+    <% @vaccinations.each_with_index do |data, index| %>
       <tr>
+        <td data-label="No"><%= index + 1 %></td>
         <td data-label="Country"></td>
         <td data-label="ISO3"></td>
         <td data-label="Data Source"></td>
@@ -27,7 +29,7 @@
         <td data-label="Total Vaccinations"><%= data.total_vaccinations %></td>
         <td data-label="Persons Vaccinated 1Plus Dose"><%= data.persons_vaccinated_1plus_dose %></td>
         <td data-label="Total Vaccinations Per 100"><%= data.persons_vaccinated_1plus_dose_per100 %></td>
-        <td data-label="Vaccines Used"><%= data.vaccination_details.count %></td>
+        <td data-label="Vaccines Used"></td>
         <td data-label="First Vaccine Date"><%= data.first_vaccine_date %></td>
         <td data-label="Number of Vaccine Type Used"><%= data.vaccination_details.count %></td>
       </tr>
