@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_045037) do
+ActiveRecord::Schema.define(version: 2021_06_03_014035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 2021_06_02_045037) do
     t.string "numeric_code"
     t.string "latitude_average"
     t.string "longitude_average"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "csv_vaccinations", force: :cascade do |t|
+    t.string "country"
+    t.string "iso3"
+    t.string "who_region"
+    t.string "data_source"
+    t.date "date_updated"
+    t.integer "total_vaccinations"
+    t.integer "persons_vaccinated_1plus_dose"
+    t.float "total_vaccinations_per100"
+    t.float "persons_vaccinated_1plus_dose_per100"
+    t.string "vaccines_used"
+    t.date "first_vaccine_date"
+    t.string "number_vaccines_types_used"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

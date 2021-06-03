@@ -1,0 +1,2 @@
+class CsvVaccination < ApplicationRecord
+end
