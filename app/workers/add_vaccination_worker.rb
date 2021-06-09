@@ -4,8 +4,8 @@ class AddVaccinationWorker
 
   require "csv"
 
-  def perform(csv_path)
-    csv_data = CSV.read(csv_path, headers: true)
+  def perform(csv_file)
+    csv_data = CSV.read(csv_file, headers: true)
 
     csv_data.each do |data|
       data_params = {}
@@ -15,5 +15,8 @@ class AddVaccinationWorker
 
       CsvVaccination.create(data_params)
     end
+
+    # Remove CSV file after successfully saved
+    FileUtils.rm csv_file
   end
 end
