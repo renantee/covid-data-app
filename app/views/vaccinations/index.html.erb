@@ -5,7 +5,7 @@
 <div class="ui divider"></div>
 <%= link_to "Delete All", vaccinations_path, method: :delete, class: 'ui red button' %>
 
-<table class="ui celled table">
+<table class="ui striped table">
   <thead>
     <tr>
       <th>#</th>
@@ -13,12 +13,12 @@
       <th>ISO3</th>
       <th>Data Source</th>
       <th>Date Updated</th>
-      <th>Total Vaccinations</th>
-      <th>Persons Vaccinated 1Plus Dose</th>
-      <th>Total Vaccinations Per 100</th>
+      <th class="right aligned">Total Vaccinations</th>
+      <th class="right aligned">Persons Vaccinated 1Plus Dose</th>
+      <th class="right aligned">Total Vaccinations Per 100</th>
       <th>Vaccines Used</th>
       <th>First Vaccine Date</th>
-      <th>Number of Vaccine Type Used</th>
+      <th class="center aligned">Number of Vaccine Type Used</th>
     </tr>
   </thead>
   <tbody>
@@ -29,12 +29,14 @@
         <td data-label="ISO3"></td>
         <td data-label="Data Source"></td>
         <td data-label="Date Updated"><%= data.date_updated %></td>
-        <td data-label="Total Vaccinations"><%= data.total_vaccinations %></td>
-        <td data-label="Persons Vaccinated 1Plus Dose"><%= data.persons_vaccinated_1plus_dose %></td>
-        <td data-label="Total Vaccinations Per 100"><%= data.persons_vaccinated_1plus_dose_per100 %></td>
-        <td data-label="Vaccines Used"></td>
+        <td data-label="Total Vaccinations" class="right aligned"><%= number_with_delimiter(data.total_vaccinations) %></td>
+        <td data-label="Persons Vaccinated 1Plus Dose" class="right aligned"><%= number_with_delimiter(data.persons_vaccinated_1plus_dose) %></td>
+        <td data-label="Total Vaccinations Per 100" class="right aligned"><%= data.persons_vaccinated_1plus_dose_per100 %></td>
+        <td data-label="Vaccines Used">
+          <%= data.vaccination_details.map{ |detail| detail.vaccine.vaccine_name }.join(", ") %>
+        </td>
         <td data-label="First Vaccine Date"><%= data.first_vaccine_date %></td>
-        <td data-label="Number of Vaccine Type Used"><%= data.vaccination_details.count %></td>
+        <td data-label="Number of Vaccine Type Used" class="center aligned"><%= data.vaccination_details.count %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,6 +1,6 @@
 class VaccinationsController < ApplicationController
   def index
-    @vaccinations = Vaccination.all
+    @vaccinations = Vaccination.all.includes(vaccination_details: :vaccine)
   end
 
   def import
