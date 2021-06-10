@@ -25,15 +25,15 @@
     <% @vaccinations.each_with_index do |data, index| %>
       <tr>
         <td data-label="No"><%= index + 1 %></td>
-        <td data-label="Country"></td>
-        <td data-label="ISO3"></td>
-        <td data-label="Data Source"></td>
+        <td data-label="Country"><%= data.country.try(&:country) %></td>
+        <td data-label="ISO3"><%= data.country.try(&:iso3) %></td>
+        <td data-label="Data Source"><%= data.vaccines.first.try(&:data_source).try(&:upcase) %></td>
         <td data-label="Date Updated"><%= data.date_updated %></td>
         <td data-label="Total Vaccinations" class="right aligned"><%= number_with_delimiter(data.total_vaccinations) %></td>
         <td data-label="Persons Vaccinated 1Plus Dose" class="right aligned"><%= number_with_delimiter(data.persons_vaccinated_1plus_dose) %></td>
-        <td data-label="Total Vaccinations Per 100" class="right aligned"><%= data.persons_vaccinated_1plus_dose_per100 %></td>
+        <td data-label="Total Vaccinations Per 100" class="right aligned"><%= number_with_delimiter(data.total_vaccinations_per100) %></td>
         <td data-label="Vaccines Used">
-          <%= data.vaccination_details.map{ |detail| detail.vaccine.vaccine_name }.join(", ") %>
+          <%= data.vaccines.map{ |vaccine| vaccine.vaccine_name }.join(", ") %>
         </td>
         <td data-label="First Vaccine Date"><%= data.first_vaccine_date %></td>
         <td data-label="Number of Vaccine Type Used" class="center aligned"><%= data.vaccination_details.count %></td>
