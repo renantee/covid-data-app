@@ -15,6 +15,7 @@ class AddVaccinationWorker
           params[header.downcase.to_sym] = data[header]
         end
       end
+      params[:country_id] = set_country_id(data)
 
       process_data(data, params)
     end
@@ -24,6 +25,15 @@ class AddVaccinationWorker
   end
 
   private
+
+  def set_country_id(data)
+    country = Country.find_or_create_by(
+      country: data["COUNTRY"],
+      iso3:    data["ISO3"]
+    )
+
+    country.id
+  end
 
   def process_data(data, vaccination_params)
     vaccine_params = []
