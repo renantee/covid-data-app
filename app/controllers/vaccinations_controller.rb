@@ -2,7 +2,8 @@ class VaccinationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @vaccinations = Vaccination.all.includes(:vaccines, :country)
+    @vaccinations = Vaccination.filter(params.slice(:country))
+                               .includes(:vaccines, :country)
     @countries = Country.all
     @vaccines = Vaccine.select(:vaccine_name).distinct.order(:vaccine_name)
   end
@@ -28,5 +29,10 @@ class VaccinationsController < ApplicationController
     tmp = csv_file.tempfile
     @file = File.join("public", csv_file.original_filename)
     FileUtils.cp tmp.path, @file
+  end
+
+  # A list of the param names that can be used for filtering the vaccinations list
+  def filtering_params(params)
+    params.slice(:country, :data_source, :vaccine)
   end
 end

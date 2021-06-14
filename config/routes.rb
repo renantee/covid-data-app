@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :vaccinations, only: [:index] do
     collection {
-      post :index
       post :import
       delete :destroy
     }

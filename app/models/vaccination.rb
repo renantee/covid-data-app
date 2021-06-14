@@ -1,4 +1,7 @@
 class Vaccination < ApplicationRecord
+  include Filterable
+  scope :filter_by_country, ->(country_id) { where country_id: country_id }
+
   has_many :vaccination_details, dependent: :destroy
   has_many :vaccines, through: :vaccination_details
   belongs_to :country

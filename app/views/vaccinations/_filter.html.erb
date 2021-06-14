@@ -1,6 +1,6 @@
-<%= form_tag vaccinations_path, multipart: true, class: 'ui form' do %>
+<%= form_tag vaccinations_path, multipart: true, class: 'ui form', method: 'get' do %>
   <div class="ui search selection dropdown">
-    <input type="hidden" name="country">
+    <input type="hidden" name="country" value="<%= params[:country] %>">
     <i class="dropdown icon"></i>
     <div class="default text">Country</div>
     <div class="menu">
@@ -13,7 +13,7 @@
   </div>
 
   <div class="ui selection dropdown">
-    <input type="hidden" name="data_source">
+    <input type="hidden" name="data_source" value="<%= params[:data_source] %>">
     <i class="dropdown icon"></i>
     <div class="default text">Data Source</div>
     <div class="menu">
@@ -22,8 +22,8 @@
     </div>
   </div>
 
-  <div class="ui selection dropdown">
-    <input type="hidden" name="vaccine">
+  <div class="ui search selection dropdown">
+    <input type="hidden" name="vaccine" value="<%= params[:vaccine] %>">
     <i class="dropdown icon"></i>
     <div class="default text">Vaccines Used</div>
     <div class="menu">
@@ -34,7 +34,7 @@
   </div>
 
   <div class="ui left icon input">
-    <%= submit_tag "Search", class: "ui submit button primary " %>
+    <%= submit_tag "Search", name: nil, class: "ui submit button primary" %>
     <i class="search icon"></i>
   </div>
 <% end %>
