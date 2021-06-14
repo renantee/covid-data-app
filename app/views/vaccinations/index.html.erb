@@ -1,9 +1,15 @@
 <h4 class="ui header">WHO Coronavirus (COVID-19) Dashboard</h4>
 
 <%= render "form" %>
-
 <div class="ui divider"></div>
-<%= link_to "Delete All", vaccinations_path, method: :delete, class: 'ui red button' %>
+
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <div class="ui segment">
+      <%= render "filter", countryObj: @countries, vaccineObj: @vaccines %>
+    </div>
+  </div>
+</div>
 
 <table class="ui striped table">
   <thead>

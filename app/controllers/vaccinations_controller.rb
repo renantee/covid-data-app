@@ -1,6 +1,10 @@
 class VaccinationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @vaccinations = Vaccination.all.includes(:vaccines, :country)
+    @countries = Country.all
+    @vaccines = Vaccine.select(:vaccine_name).distinct.order(:vaccine_name)
   end
 
   def import

@@ -11,4 +11,6 @@
     <%= submit_tag "Import CSV", class: "ui submit button primary " %>
     <i class="upload icon"></i>
   </div>
+
+  <%= link_to "Delete All", vaccinations_path, method: :delete, class: 'ui red button' %>
 <% end %>

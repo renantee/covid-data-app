@@ -1,0 +1,40 @@
+<%= form_tag vaccinations_path, multipart: true, class: 'ui form' do %>
+  <div class="ui search selection dropdown">
+    <input type="hidden" name="country">
+    <i class="dropdown icon"></i>
+    <div class="default text">Country</div>
+    <div class="menu">
+      <% countryObj.each do |country| %>
+        <div class="item" data-value="<%= country.id %>">
+          <i class="<%= !country.iso2.nil? ? country.iso2.downcase : country.iso3.first(2).downcase %> flag"></i><%= country.country %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="ui selection dropdown">
+    <input type="hidden" name="data_source">
+    <i class="dropdown icon"></i>
+    <div class="default text">Data Source</div>
+    <div class="menu">
+      <div class="item" data-value="0">REPORTING</div>
+      <div class="item" data-value="1">OWID</div>
+    </div>
+  </div>
+
+  <div class="ui selection dropdown">
+    <input type="hidden" name="vaccine">
+    <i class="dropdown icon"></i>
+    <div class="default text">Vaccines Used</div>
+    <div class="menu">
+      <% vaccineObj.each do |vaccine| %>
+        <div class="item" data-value="<%= vaccine.vaccine_name %>"><%= vaccine.vaccine_name %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="ui left icon input">
+    <%= submit_tag "Search", class: "ui submit button primary " %>
+    <i class="search icon"></i>
+  </div>
+<% end %>
