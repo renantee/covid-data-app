@@ -10,15 +10,18 @@ require "seed-fu"
 
 SeedFu::Writer.write(@output_file.to_s, class_name:  @class_name.to_s,
                                         constraints: [:id]) do |writer|
+  vaccine_array = []
   @seeds.each do |seed|
+    next if vaccine_array.include? seed["vaccine_name"]
+
     hash = {}
     @seeds.headers.each do |header|
-      hash[header.downcase.to_sym] = if header == "data_source"
-                                       seed[header] == "REPORTING" ? 0 : 1
-                                     else
-                                       seed[header]
-                                     end
+      if ["vaccine_name", "product_name", "company_name"].include?(header)
+        hash[header.to_sym] = seed[header]
+      end
     end
+
     writer.add(hash)
+    vaccine_array.push(seed["vaccine_name"])
   end
 end
