@@ -2,10 +2,10 @@ class VaccinationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @vaccinations = Vaccination.filter(params.slice(:country))
+    @vaccinations = Vaccination.filter(params.slice(:country, :data_source, :vaccine))
                                .includes(:vaccines, :country)
     @countries = Country.all
-    @vaccines = Vaccine.select(:vaccine_name).distinct.order(:vaccine_name)
+    @vaccines = Vaccine.all.order(:vaccine_name)
   end
 
   def import

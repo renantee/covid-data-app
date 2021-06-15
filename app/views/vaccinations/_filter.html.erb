@@ -28,7 +28,7 @@
     <div class="default text">Vaccines Used</div>
     <div class="menu">
       <% vaccineObj.each do |vaccine| %>
-        <div class="item" data-value="<%= vaccine.vaccine_name %>"><%= vaccine.vaccine_name %></div>
+        <div class="item" data-value="<%= vaccine.id %>"><%= vaccine.vaccine_name %></div>
       <% end %>
     </div>
   </div>

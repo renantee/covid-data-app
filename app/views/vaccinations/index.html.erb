@@ -33,7 +33,7 @@
         <td data-label="No"><%= index + 1 %></td>
         <td data-label="Country"><%= data.country.try(&:country) %></td>
         <td data-label="ISO3"><%= data.country.try(&:iso3) %></td>
-        <td data-label="Data Source"><%= data.vaccines.first.try(&:data_source).try(&:upcase) %></td>
+        <td data-label="Data Source"><%= data.data_source.upcase %></td>
         <td data-label="Date Updated"><%= data.date_updated %></td>
         <td data-label="Total Vaccinations" class="right aligned"><%= number_with_delimiter(data.total_vaccinations) %></td>
         <td data-label="Persons Vaccinated 1Plus Dose" class="right aligned"><%= number_with_delimiter(data.persons_vaccinated_1plus_dose) %></td>
