@@ -43,7 +43,7 @@ class AddVaccinationWorker
     vaccine_params = []
     data["VACCINES_USED"].to_s.split(",").each do |name|
       vaccine = Vaccine.find_or_create_by(
-        vaccine_name: name
+        vaccine_name: name.strip
       )
       vaccine_params.push({ vaccine_id: vaccine.id })
     end
