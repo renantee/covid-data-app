@@ -10,12 +10,16 @@ class AddVaccinationWorker
     csv_data.each do |data|
       params = {}
       csv_data.headers.each do |header|
-        if ["COUNTRY", "ISO3", "DATA_SOURCE", "VACCINES_USED",
-            "NUMBER_VACCINES_TYPES_USED"].exclude?(header)
-          params[header.downcase.to_sym] = data[header]
-        end
+        next unless ["COUNTRY", "ISO3", "VACCINES_USED",
+                     "NUMBER_VACCINES_TYPES_USED"].exclude?(header)
+
+        params[header.downcase.to_sym] = if header == "DATA_SOURCE"
+                                           data[header] == "REPORTING" ? 0 : 1
+                                         else
+                                           data[header]
+                                         end
       end
-      params[:country_id] = set_country_id(data)
+      params[:country_id] = country_id(data)
 
       process_data(data, params)
     end
@@ -26,7 +30,7 @@ class AddVaccinationWorker
 
   private
 
-  def set_country_id(data)
+  def country_id(data)
     country = Country.find_or_create_by(
       country: data["COUNTRY"],
       iso3:    data["ISO3"]
@@ -39,9 +43,7 @@ class AddVaccinationWorker
     vaccine_params = []
     data["VACCINES_USED"].to_s.split(",").each do |name|
       vaccine = Vaccine.find_or_create_by(
-        vaccine_name: name,
-        iso3:         data["ISO3"],
-        data_source:  data["DATA_SOURCE"] == "REPORTING" ? 0 : 1
+        vaccine_name: name
       )
       vaccine_params.push({ vaccine_id: vaccine.id })
     end
