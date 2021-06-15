@@ -51,7 +51,63 @@
 <script>
   $(document).ready(function() {
     $('.ui.dropdown').dropdown({
-        "clearable": true
+      "clearable": true
+    });
+
+    $('#date_updated_start_date').calendar({
+      type: 'date',
+      endCalendar: $('#date_updated_end_date'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + String("00" + month).slice(-2) + '-' + String("00" + day).slice(-2);
+        }
+      }
+    });
+
+    $('#date_updated_end_date').calendar({
+      type: 'date',
+      startCalendar: $('#date_updated_start_date'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + String("00" + month).slice(-2) + '-' + String("00" + day).slice(-2);
+        }
+      }
+    });
+
+    $('#first_vaccine_date_start').calendar({
+      type: 'date',
+      endCalendar: $('#first_vaccine_date_end'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + String("00" + month).slice(-2) + '-' + String("00" + day).slice(-2);
+        }
+      }
+    });
+
+    $('#first_vaccine_date_end').calendar({
+      type: 'date',
+      startCalendar: $('#first_vaccine_date_start'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + String("00" + month).slice(-2) + '-' + String("00" + day).slice(-2);
+        }
+      }
     });
   });
 </script>

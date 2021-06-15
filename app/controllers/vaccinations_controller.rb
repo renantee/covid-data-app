@@ -4,6 +4,10 @@ class VaccinationsController < ApplicationController
   def index
     @vaccinations = Vaccination.filter(params.slice(:country, :data_source, :vaccine))
                                .includes(:vaccines, :country)
+
+    filter_date_updated
+    filter_first_vaccine_date
+
     @countries = Country.all
     @vaccines = Vaccine.all.order(:vaccine_name)
   end
@@ -34,5 +38,27 @@ class VaccinationsController < ApplicationController
   # A list of the param names that can be used for filtering the vaccinations list
   def filtering_params(params)
     params.slice(:country, :data_source, :vaccine)
+  end
+
+  def filter_date_updated
+    if params[:date_updated_start_date].present?
+      @vaccinations.where("date_updated >= ?",
+                          params[:date_updated_start_date])
+    end
+    if params[:date_updated_end_date].present?
+      @vaccinations.where("date_updated <= ?",
+                          params[:date_updated_end_date])
+    end
+  end
+
+  def filter_first_vaccine_date
+    if params[:first_vaccine_date_start].present?
+      @vaccinations.where("first_vaccine_date >= ?",
+                          params[:first_vaccine_date_start])
+    end
+    if params[:first_vaccine_date_end].present?
+      @vaccinations.where("first_vaccine_date <= ?",
+                          params[:first_vaccine_date_end])
+    end
   end
 end
