@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_030617) do
+ActiveRecord::Schema.define(version: 2021_06_15_031607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,31 @@ ActiveRecord::Schema.define(version: 2021_06_15_030617) do
     t.index ["country_id"], name: "index_vaccinations_on_country_id"
   end
 
+  create_table "vaccine_details", force: :cascade do |t|
+    t.bigint "vaccine_id", null: false
+    t.bigint "country_id", null: false
+    t.date "authorization_date"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "comment"
+    t.integer "data_source"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_vaccine_details_on_country_id"
+    t.index ["vaccine_id"], name: "index_vaccine_details_on_vaccine_id"
+  end
+
+  create_table "vaccines", force: :cascade do |t|
+    t.string "vaccine_name"
+    t.string "product_name"
+    t.string "company_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "users", "countries"
   add_foreign_key "vaccination_details", "vaccinations"
   add_foreign_key "vaccinations", "countries"
+  add_foreign_key "vaccine_details", "countries"
+  add_foreign_key "vaccine_details", "vaccines"
 end
