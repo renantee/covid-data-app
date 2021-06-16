@@ -9,8 +9,8 @@
           <div class="field">
             <%= f.label :email %>
             <div class="ui left icon input">
-              <%= f.email_field :email, autofocus: true ,placeholder:"Email"%>
-              <i class="user icon"></i>
+              <%= f.email_field :email, autofocus: true ,placeholder:"john@example.com"%>
+              <i class="envelope icon"></i>
             </div>
           </div>
 
@@ -29,16 +29,11 @@
             </div>
           <% end -%>
 
-
-          <div class="actions">
-            <%= f.submit "Log in" ,class: "ui submit button primary "%>
+          <div class="ui left icon input">
+            <%= f.submit "Log in", class: "ui submit button primary" %>
+            <i class="sign-in icon"></i>
           </div>
         <% end %>
-
-        <div class="ui horizontal divider">or</div>
-        <div class="ui celled horizontal list">
-          <%= render "devise/shared/links" %>
-        </div>
       </div>
     </div>
   </div>
