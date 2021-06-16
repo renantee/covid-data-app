@@ -1,7 +1,9 @@
 <h4 class="ui header">WHO Coronavirus (COVID-19) Dashboard</h4>
 
-<%= render "form" %>
-<div class="ui divider"></div>
+<% if current_user.is_admin? %>
+  <%= render "form" %>
+  <div class="ui divider"></div>
+<% end %>
 
 <div class="ui grid">
   <div class="sixteen wide column">
