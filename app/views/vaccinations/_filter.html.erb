@@ -2,6 +2,50 @@
   <div class="ui form">
     <div class="four fields">
       <div class="field">
+        <label>Date Updated (Date Range)</label>
+        <div class="ui calendar" id="date_updated_start_date">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" name="date_updated_start_date" value="<%= params[:date_updated_start_date] %>" placeholder="Start Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+      <label>&nbsp;</label>
+        <div class="ui calendar" id="date_updated_end_date">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" name="date_updated_end_date" value="<%= params[:date_updated_end_date] %>" placeholder="End Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>First Vaccine (Date Range)</label>
+        <div class="ui calendar" id="first_vaccine_date_start">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" name="first_vaccine_date_start" value="<%= params[:first_vaccine_date_start] %>" placeholder="Start Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>&nbsp;</label>
+        <div class="ui calendar" id="first_vaccine_date_end">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" name="first_vaccine_date_end" value="<%= params[:first_vaccine_date_end] %>" placeholder="End Date">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui form">
+    <div class="four fields">
+      <div class="field">
         <div class="ui search selection dropdown">
           <input type="hidden" name="country" value="<%= params[:country] %>">
           <i class="dropdown icon"></i>
@@ -45,50 +89,6 @@
         <div class="ui left icon input">
           <%= submit_tag "Search", name: nil, class: "ui submit button primary" %>
           <i class="search icon"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ui form">
-    <div class="four fields">
-      <div class="field">
-        <label>Date Updated (Date Range)</label>
-        <div class="ui calendar" id="date_updated_start_date">
-          <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input type="text" name="date_updated_start_date" value="<%= params[:date_updated_start_date] %>" placeholder="Start Date">
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-      <label>&nbsp;</label>
-        <div class="ui calendar" id="date_updated_end_date">
-          <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input type="text" name="date_updated_end_date" value="<%= params[:date_updated_end_date] %>" placeholder="End Date">
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>First Vaccine (Date Range)</label>
-        <div class="ui calendar" id="first_vaccine_date_start">
-          <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input type="text" name="first_vaccine_date_start" value="<%= params[:first_vaccine_date_start] %>" placeholder="Start Date">
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>&nbsp;</label>
-        <div class="ui calendar" id="first_vaccine_date_end">
-          <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input type="text" name="first_vaccine_date_end" value="<%= params[:first_vaccine_date_end] %>" placeholder="End Date">
-          </div>
         </div>
       </div>
     </div>
