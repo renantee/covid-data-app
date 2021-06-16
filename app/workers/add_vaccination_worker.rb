@@ -4,28 +4,29 @@ class AddVaccinationWorker
 
   require "csv"
 
+  # TODO: Need to refactor saving of data
   def perform(csv_file)
-    csv_data = CSV.read(csv_file, headers: true)
+    # csv_data = CSV.read(csv_file, headers: true)
 
-    csv_data.each do |data|
-      params = {}
-      csv_data.headers.each do |header|
-        next unless ["COUNTRY", "ISO3", "VACCINES_USED",
-                     "NUMBER_VACCINES_TYPES_USED"].exclude?(header)
+    # csv_data.each do |data|
+    #   params = {}
+    #   csv_data.headers.each do |header|
+    #     next unless ["COUNTRY", "ISO3", "VACCINES_USED",
+    #                  "NUMBER_VACCINES_TYPES_USED"].exclude?(header)
 
-        params[header.downcase.to_sym] = if header == "DATA_SOURCE"
-                                           data[header] == "REPORTING" ? 0 : 1
-                                         else
-                                           data[header]
-                                         end
-      end
-      params[:country_id] = country_id(data)
+    #     params[header.downcase.to_sym] = if header == "DATA_SOURCE"
+    #                                        data[header] == "REPORTING" ? 0 : 1
+    #                                      else
+    #                                        data[header]
+    #                                      end
+    #   end
+    #   params[:country_id] = country_id(data)
 
-      process_data(data, params)
-    end
+    #   process_data(data, params)
+    # end
 
-    # Remove CSV file after successfully saved
-    FileUtils.rm csv_file
+    # # Remove CSV file after successfully saved
+    # FileUtils.rm csv_file
   end
 
   private

@@ -10,9 +10,8 @@ class VaccinationsController < ApplicationController
   end
 
   def import
-    file_upload(params[:file])
-
-    AddVaccinationWorker.perform_async(@file)
+    upload_file
+    AddVaccinationWorker.perform_async(@amazon_obj.public_url)
     flash[:notice] = "CSV data has been successfully saved."
     redirect_to root_path
   end
@@ -25,10 +24,14 @@ class VaccinationsController < ApplicationController
 
   private
 
-  def file_upload(csv_file)
-    tmp = csv_file.tempfile
-    @file = File.join("public", csv_file.original_filename)
-    FileUtils.cp tmp.path, @file
+  def upload_file
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV["S3_BUCKET"])
+    file = params[:file]
+    filename = file.original_filename
+
+    @amazon_obj = bucket.object(filename)
+    @amazon_obj.put(body: file.to_io)
   end
 
   # A list of the param names that can be used for filtering the vaccinations list
