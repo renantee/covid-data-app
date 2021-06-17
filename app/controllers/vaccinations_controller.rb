@@ -10,11 +10,16 @@ class VaccinationsController < ApplicationController
   end
 
   def import
-    file_content = params[:file].read.force_encoding("UTF-8")
+    if params[:file].nil?
+      flash[:alert] = "You must choose a file to import!"
+      redirect_to request.referer
+    else
+      file_content = params[:file].read.force_encoding("UTF-8")
 
-    AddVaccinationWorker.perform_async(file_content)
-    flash[:notice] = "CSV data has been successfully saved."
-    redirect_to root_path
+      AddVaccinationWorker.perform_async(file_content)
+      flash[:notice] = "CSV data has been successfully saved."
+      redirect_to root_path
+    end
   end
 
   def destroy
