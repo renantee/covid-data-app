@@ -30,7 +30,7 @@ class VaccinationsController < ApplicationController
     return unless params[:file].nil?
 
     flash[:alert] = "You must choose a file to import!"
-    redirect_to request.referer
+    redirect_to vaccinations_path
   end
 
   # A list of the param names that can be used for filtering the vaccinations list

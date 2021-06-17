@@ -72,7 +72,8 @@ end
 
 def login_user
   Warden.test_mode!
-  user = create(:user)
+  country = create(:country)
+  user = create(:user, country_id: country.id)
   login_as user, scope: :user
   user.save
   user
