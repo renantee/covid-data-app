@@ -6,6 +6,8 @@ require File.expand_path("../config/environment", __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
+# NOTE: require 'devise' after require 'rspec/rails'
+require "devise"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,4 +64,20 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # For Devise > 4.1.1
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Warden::Test::Helpers
+end
+
+def login_user
+  Warden.test_mode!
+  user = create(:user)
+  login_as user, scope: :user
+  user.save
+  user
+end
+
+def sign_in(user)
+  cookies[:auth_token] = user.auth_token
 end

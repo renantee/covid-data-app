@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :country do
-    country { "MyString" }
-    iso2 { "MyString" }
-    iso3 { "MyString" }
-    numeric_code { "MyString" }
-    latitude_average { "MyString" }
-    longitude_average { "MyString" }
+    country { "Philippines" }
+    iso2 { "PH" }
+    iso3 { "PHL" }
+    numeric_code { "608" }
+    latitude_average { "13" }
+    longitude_average { "122" }
   end
 end
