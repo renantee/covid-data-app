@@ -4,7 +4,7 @@
 # Seeding Vaccine
 # Written with the command:
 #
-#   bin/rails 
+#   bin/rails
 #
 Vaccine.seed(:id,
   {:vaccine_name=>"Gamaleya - Sputnik V", :product_name=>"Sputnik V", :company_name=>"Gamaleya Research Institute"},

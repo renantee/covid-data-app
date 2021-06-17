@@ -4,7 +4,7 @@
 # Seeding Country
 # Written with the command:
 #
-#   bin/rails 
+#   bin/rails
 #
 Country.seed(:id,
   {:country=>"Afghanistan", :iso2=>"AF", :iso3=>"AFG", :numeric_code=>"4", :latitude_average=>"33", :longitude_average=>"65"},
