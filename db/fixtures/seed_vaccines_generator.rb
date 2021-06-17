@@ -15,10 +15,9 @@ SeedFu::Writer.write(@output_file.to_s, class_name:  @class_name.to_s,
     next if vaccine_array.include? seed["vaccine_name"]
 
     hash = {}
+    allowed = ["vaccine_name", "product_name", "company_name"]
     @seeds.headers.each do |header|
-      if ["vaccine_name", "product_name", "company_name"].include?(header)
-        hash[header.to_sym] = seed[header]
-      end
+      hash[header.to_sym] = seed[header] if allowed.include?(header)
     end
 
     writer.add(hash)

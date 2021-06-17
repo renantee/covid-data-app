@@ -7,24 +7,28 @@ class AddVaccinationWorker
   def perform(content)
     csv_data = CSV.parse(content, headers: :first_row).map(&:to_h)
     csv_data.each do |data|
-      params = {}
-      data.each do |key, value|
-        next unless ["COUNTRY", "ISO3", "VACCINES_USED",
-                     "NUMBER_VACCINES_TYPES_USED"].exclude?(key)
+      params_for_vaccination(data)
+      @params[:country_id] = country_id(data)
 
-        params[key.downcase.to_sym] = if key == "DATA_SOURCE"
-                                        value == "REPORTING" ? 0 : 1
-                                      else
-                                        value
-                                      end
-      end
-      params[:country_id] = country_id(data)
-
-      process_data(data, params)
+      process_data(data, @params)
     end
   end
 
   private
+
+  def params_for_vaccination(data)
+    @params = {}
+    data.each do |key, value|
+      next unless ["COUNTRY", "ISO3", "VACCINES_USED",
+                   "NUMBER_VACCINES_TYPES_USED"].exclude?(key)
+
+      @params[key.downcase.to_sym] = if key == "DATA_SOURCE"
+                                       value == "REPORTING" ? 0 : 1
+                                     else
+                                       value
+                                     end
+    end
+  end
 
   def country_id(data)
     country = Country.find_or_create_by(
