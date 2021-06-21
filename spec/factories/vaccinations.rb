@@ -7,5 +7,6 @@ FactoryBot.define do
     total_vaccinations_per100 { 1.5 }
     persons_vaccinated_1plus_dose_per100 { 1.5 }
     first_vaccine_date { "2021-06-02" }
+    data_source { 0 }
   end
 end
