@@ -7,7 +7,7 @@
       <div class="ui form <%= "error" if resource.errors.any? %>">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="ui error message">
-            <%= devise_error_messages! %>
+            <%= render "devise/shared/error_messages", resource: resource %>
           </div>
 
           <div class="field ">
@@ -21,11 +21,11 @@
           <div class="field">
             <%= f.label :country %>
             <div class="ui search selection dropdown">
-              <%= f.hidden_field :country_id, :value => Country.find_by(iso2: 'PH').id %>
+              <%= f.hidden_field :country_id, :value => @default_user_country.id %>
               <i class="dropdown icon"></i>
               <div class="default text">Country</div>
               <div class="menu">
-                <% Country.all.each do |country| %>
+                <% @countries.each do |country| %>
                   <div class="item" data-value="<%= country.id %>">
                     <i class="<%= !country.iso2.nil? ? country.iso2.downcase : country.iso3.first(2).downcase %> flag"></i><%= country.country %>
                   </div>
