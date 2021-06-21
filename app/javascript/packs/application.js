@@ -13,3 +13,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require("semantic-ui-sass")
+require("chartkick")
+require("chart.js")

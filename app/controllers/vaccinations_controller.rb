@@ -8,6 +8,9 @@ class VaccinationsController < ApplicationController
 
     @countries = Country.all
     @vaccines = Vaccine.all.order(:vaccine_name)
+    @chart_data = Vaccination.joins(vaccination_details: :vaccine)
+                             .group(:vaccine_name)
+                             .sum(:total_vaccinations)
   end
 
   def import
