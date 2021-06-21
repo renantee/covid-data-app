@@ -9,6 +9,7 @@ require "rspec/rails"
 # NOTE: require 'devise' after require 'rspec/rails'
 require "devise"
 # Add additional requires below this line. Rails is not loaded until this point!
+require "capybara/rspec"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -81,4 +82,13 @@ end
 
 def sign_in(user)
   cookies[:auth_token] = user.auth_token
+end
+
+def sign_in_as(user)
+  visit root_path
+  click_link "Login"
+
+  fill_in "Email", with: user.email
+  fill_in "Password", with: user.password
+  click_button "Log in"
 end
