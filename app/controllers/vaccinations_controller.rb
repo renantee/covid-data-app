@@ -6,11 +6,11 @@ class VaccinationsController < ApplicationController
     @vaccinations = Vaccination.filter(filtering_params)
                                .includes(:vaccines, :country)
 
+    @chart_data = @vaccinations.group(:vaccine_name)
+                               .sum(:total_vaccinations)
+
     @countries = Country.all
     @vaccines = Vaccine.all.order(:vaccine_name)
-    @chart_data = Vaccination.joins(vaccination_details: :vaccine)
-                             .group(:vaccine_name)
-                             .sum(:total_vaccinations)
   end
 
   def import
