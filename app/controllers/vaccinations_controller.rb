@@ -6,7 +6,8 @@ class VaccinationsController < ApplicationController
     @vaccinations = Vaccination.filter(filtering_params)
                                .includes(:vaccines, :country)
 
-    @chart_data = @vaccinations.group(:vaccine_name)
+    @chart_data = @vaccinations.order("sum_total_vaccinations desc")
+                               .group(:vaccine_name)
                                .sum(:total_vaccinations)
 
     @countries = Country.all
