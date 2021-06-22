@@ -24,6 +24,7 @@ gem 'devise'
 gem 'semantic-ui-sass'
 gem 'seed-fu', '~> 2.3'
 gem "aws-sdk-s3", require: false
+gem "chartkick"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
