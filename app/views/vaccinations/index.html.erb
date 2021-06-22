@@ -13,13 +13,16 @@
   </div>
 </div>
 
-<div class="ui grid">
-  <div class="sixteen wide column">
-    <div class="ui segment">
-      <%= bar_chart @chart_data %>
+<% if @chart_data.length > 0 %>
+  <h3>Total Vaccinations Per Vaccine</h3>
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui segment">
+        <%= bar_chart @chart_data %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <table class="ui striped table">
   <thead>
