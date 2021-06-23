@@ -21,12 +21,10 @@ module Filterable
       where "first_vaccine_date <= ?", first_vaccine_date_end
     }
     scope :filter_by_vaccine, lambda { |vaccine_ids|
-      where(
-        "EXISTS (:vaccination_details)",
-        vaccination_details: VaccinationDetail.select("1")
-          .where("vaccination_details.vaccination_id = vaccinations.id")
-          .where(vaccine_id: vaccine_ids.split(","))
-      )
+      where("EXISTS (:vaccination_details)",
+            vaccination_details: VaccinationDetail.select("1")
+              .where("vaccination_details.vaccination_id = vaccinations.id")
+              .where(vaccine_id: vaccine_ids.split(",")))
     }
   end
 
