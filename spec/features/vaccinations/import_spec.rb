@@ -6,6 +6,7 @@ RSpec.feature "Vaccinations#import", type: :feature do
 
   scenario "Admin user imports CSV Data" do
     sign_in_as admin
+    visit vaccinations_path
     attach_file("file", "spec/fixtures/files/vaccination-data.csv")
     click_button "Import CSV"
 
@@ -15,6 +16,7 @@ RSpec.feature "Vaccinations#import", type: :feature do
 
   scenario "Admin user did not choose a file to import" do
     sign_in_as admin
+    visit vaccinations_path
     click_button "Import CSV"
 
     expect(page).to have_current_path vaccinations_path

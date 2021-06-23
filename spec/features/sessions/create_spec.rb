@@ -7,7 +7,7 @@ RSpec.feature "Sessions#create", type: :feature do
   scenario "Signing in with correct credentials" do
     sign_in_as user
 
-    expect(page).to have_current_path vaccinations_path
+    expect(page).to have_current_path root_path
     expect(page).to have_content "Signed in successfully."
   end
 

@@ -84,7 +84,13 @@ def sign_in(user)
   cookies[:auth_token] = user.auth_token
 end
 
+def sign_out(resource_or_scope)
+  scope = Devise::Mapping.find_scope!(resource_or_scope)
+  logout(scope)
+end
+
 def sign_in_as(user)
+  sign_out user
   visit new_user_session_path
 
   fill_in "Email", with: user.email
