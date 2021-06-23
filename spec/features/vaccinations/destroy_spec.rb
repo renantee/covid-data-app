@@ -7,6 +7,7 @@ RSpec.feature "Vaccinations#destroy", type: :feature do
 
   scenario "Admin user deletes all CSV Data" do
     sign_in_as admin
+    visit vaccinations_path
     click_link "Delete All"
 
     expect(page).to have_current_path root_path

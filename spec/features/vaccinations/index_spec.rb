@@ -8,13 +8,13 @@ RSpec.feature "Vaccinations#index", type: :feature do
 
   scenario "Displays Upload CSV Data section for Admin user" do
     sign_in_as admin
-    expect(page).to have_current_path vaccinations_path
+    visit vaccinations_path
     expect(page).to have_content "Upload CSV Data"
   end
 
   scenario "Displays vaccinations's list in Dashboard" do
     sign_in_as user
-    expect(page).to have_current_path vaccinations_path
+    visit vaccinations_path
 
     page.all("table.table tbody tr").each_with_index do |row, index|
       within(row) do

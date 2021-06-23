@@ -12,8 +12,8 @@ RSpec.shared_context "valid registration fields" do
       expect(response).to have_http_status :ok
     end
 
-    it "redirects to Home" do
-      expect(subject).to redirect_to vaccinations_path
+    it "redirects to Home (but technically redirected to Dashboard)" do
+      expect(subject).to redirect_to root_path
     end
   end
 end

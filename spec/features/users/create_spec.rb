@@ -7,7 +7,7 @@ RSpec.feature "Users#create", type: :feature do
   scenario "Register user with valid attributes" do
     valid_attributes
 
-    expect(page).to have_current_path vaccinations_path
+    expect(page).to have_current_path root_path
   end
 
   scenario "Register user without email" do
