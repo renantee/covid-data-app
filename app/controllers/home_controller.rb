@@ -7,12 +7,12 @@ class HomeController < ApplicationController
 
   def redirect_referer
     [
-      "http://localhost:3000/users/sign_up",
-      "http://localhost:3000/users/sign_in",
-      "https://nante-covid-data.herokuapp.com/users/sign_up",
-      "https://nante-covid-data.herokuapp.com/users/sign_in",
-      "http://nante-covid-data.herokuapp.com/users/sign_up",
-      "http://nante-covid-data.herokuapp.com/users/sign_in"
+      "http://localhost:3000/register",
+      "http://localhost:3000/login",
+      "https://nante-covid-data.herokuapp.com/register",
+      "https://nante-covid-data.herokuapp.com/login",
+      "http://nante-covid-data.herokuapp.com/register",
+      "http://nante-covid-data.herokuapp.com/login"
     ]
   end
 end
